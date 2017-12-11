@@ -134,10 +134,12 @@ class Casino {
         let gameChosenString: string = this.userInputHTMLElement.value;
         let gameChosenNumber: number = parseInt(gameChosenString);
         if (gameChosenNumber == 1) {
+            this._resetButtonHTMLElement.setAttribute("onclick", "craps.play()");
             craps.play();
         }
         else if (gameChosenNumber == 2) {
-            blackjack.play();
+            this._resetButtonHTMLElement.setAttribute("onclick", "blackjack.play()");
+            blackjack.play(); 
         }
         else if (gameChosenNumber == 3) {
 

@@ -78,7 +78,7 @@ class BlackJack extends CardGame implements Gamble, Game {
       this.displayElement.innerHTML += "<img class=" + cssCards + " src=" + imageURL + ">"
       }
       this.dealer.calculateTotalScore();
-      console.log(this.dealer.getScore()); //shows score
+      console.log(this.dealer.getScore());
   }
 
   public displayPlayerHand() {
@@ -88,24 +88,21 @@ class BlackJack extends CardGame implements Gamble, Game {
       this.displayElement.innerHTML += "<img class=" + "cssCards" + " src=" + imageURL + ">"
     }
     this.player.calculateTotalScore();
-    console.log(this.player.getScore()); //shows score
-  }
-
-  public hit(): void { //not adding up score...
-    this.player.addToHand(this.deck.getCard());
-    let imageURL = this.player._hand.pop().getImageURL();
-    this.displayElement.innerHTML += "<img class=" + "cssCards" + " src=" + imageURL + ">"
-    // this.checkIfScoreOver21();
-    this.player.calculateTotalScore();
     console.log(this.player.getScore());
   }
 
-  public stay(): void {
+  public hit(): void {
+    this.player.addToHand(this.deck.getCard());
+    let imageURL = this.player._hand.pop().getImageURL();
+    this.displayElement.innerHTML += "<img class=" + "cssCards" + " src=" + imageURL + ">"
+    this.checkIfScoreOver21();
+    console.log(this.player.getScore());
+  }
+
+  public stay(): void { 
     this.player.calculateTotalScore();
-    //dealer play
-    //check for Win
-    //update Balance
-    //check balance amount
+    this.dealerPlay();
+    this.checkForWinAndUpdateBalance();
   }
 
   public checkIfScoreOver21() {
@@ -196,6 +193,11 @@ class BlackJack extends CardGame implements Gamble, Game {
   }
   private showStayButton() {
     this.stayButtonHTMLElement.style.display = "";
+  }
+
+  private hideGameButtons(){
+    this.hideHitButton();
+    this.hideStayButton();
   }
 
 }

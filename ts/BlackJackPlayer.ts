@@ -18,7 +18,7 @@ public setScore(newScore: number): void {
 }
 
 public calculateTotalScore(): void {
-  this._score = 0;
+  // this._score = 0;
   for(var i=0; i<this._hand.length; i++) {
     this._score += this._hand[i].getValue();  //for(let card of this.hand) { }
   }
